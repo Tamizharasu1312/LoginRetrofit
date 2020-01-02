@@ -67,7 +67,8 @@ class MainActivity : AppCompatActivity() {
         aJsonObj.addProperty("password", "123")
 
 
-        TKApiClient.getService().getLogin(addHeader())
+        //TKApiClient.getService().getLogin(addHeader())
+        TKApiClient.getService().getLogin(aJsonObj)
             .enqueue(object :
                 Callback<LoginResponse> {
                 override fun onResponse(
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
                         //Log.e("Error", response.errorBody().toString())
 
-                        if (response.body()?.statusCode == 200) {
+                        /*if (response.body()?.statusCode == 200) {
 
                             TKPrefs.putObject(LOGIN_OBJECT, response.body()?.data!!.logins)
                             TKPrefs.putObject(USER_OBJECT, response.body()?.data!!.userInfo)
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                             TKPrefs.putString(TOKEN, response.body()?.accessToken.toString())
 
 
-                        }
+                        }*/
                     }
                     }
 
@@ -103,8 +104,8 @@ class MainActivity : AppCompatActivity() {
     }
     fun addHeader(): HashMap<String, String> {
         val aHeaderValues = HashMap<String, String>()
-        aHeaderValues["code"] = "e1206"
-        aHeaderValues["password"] = "123"
+        aHeaderValues.put("code","e1206")
+        aHeaderValues.put("password","123")
         return aHeaderValues
     }
 }
