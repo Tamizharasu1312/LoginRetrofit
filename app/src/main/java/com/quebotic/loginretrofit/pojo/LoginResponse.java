@@ -16,6 +16,7 @@ public class LoginResponse {
 
     public String id;
     public String code;
+    public String agent;
 
 
 

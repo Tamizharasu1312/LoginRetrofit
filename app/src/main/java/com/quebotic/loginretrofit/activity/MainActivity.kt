@@ -75,21 +75,11 @@ class MainActivity : AppCompatActivity() {
                     call: Call<LoginResponse>,
                     response: Response<LoginResponse>
                 ) {
-                    if(response.isSuccessful){
-                        //Log.d("LoginResponse", response.body()?.Data().toString())
 
-                        //Log.e("Error", response.errorBody().toString())
-
-                        /*if (response.body()?.statusCode == 200) {
-
-                            TKPrefs.putObject(LOGIN_OBJECT, response.body()?.data!!.logins)
-                            TKPrefs.putObject(USER_OBJECT, response.body()?.data!!.userInfo)
-                            //mDBHelper?.storeLoginInfo(response.body()?.data!!.logins)
-
-                            TKPrefs.putString(TOKEN, response.body()?.accessToken.toString())
-
-
-                        }*/
+                    if(response.code()==200){
+                        if(response.body()?.message.isNullOrEmpty()){
+                            Log.d("code", response.body()?.code!!)
+                        }
                     }
                     }
 
