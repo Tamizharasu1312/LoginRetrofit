@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LoginRetrofit</string>
+
+
+    <string name="login_text">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="remember_me">Remember Me</string>
+
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+</resources>
