@@ -17,9 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
-
-    var mSiteURLEDT = "https://jayanathanchits.in/"
+class AllListActivity : AppCompatActivity() {
 
     private var mContext: Context? = null
 
@@ -29,13 +27,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.alllist_layout)
 
         try {
-            mContext = this@MainActivity
-            TKPrefs.putString(SITE_URL, mSiteURLEDT)
-
+            mContext = this@AllListActivity
             initViews()
+
+            getAllList()
 
             clickListener()
         } catch (e: Exception) {
@@ -53,15 +51,14 @@ class MainActivity : AppCompatActivity() {
 
         try {
             mbtLogin!!.setOnClickListener {
-                TKApiClient.changeApiBaseUrl(TKPrefs.getString(SITE_URL, "")!!)
-                callLogin()
+                getAllList()
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    private fun callLogin() {
+    private fun getAllList() {
 
         val aJsonObj = JsonObject()
         aJsonObj.addProperty("code", "e1206")
@@ -80,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                     if(response.code()==200){
                         if(response.body()?.message.isNullOrEmpty()){
                             Log.d("code", response.body()?.code!!)
-                            val intent = Intent(this@MainActivity, AllListActivity::class.java)
+                            val intent = Intent(this@AllListActivity, AllListActivity::class.java)
                             // start your next activity
                             startActivity(intent)
                         }
